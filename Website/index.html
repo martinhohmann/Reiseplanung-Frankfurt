@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Frankfurt zu Fuß – Bankenviertel & Altstadt</title>
+<meta name="description" content="Ein zweistündiger Spaziergang vom Commerzbank Tower zum Eisernen Steg, mit Geschichten zu jeder Station.">
+<meta name="theme-color" content="#121826">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+  :root {
+    --bg: #f7f3ec;
+    --bg-elevated: #ffffff;
+    --text: #201c17;
+    --text-muted: #6a6259;
+    --accent: #a8462f;
+    --accent-soft: #f1ded6;
+    --line: #ded4c5;
+    --navy: #121826;
+    --tag-bg: #eee6d8;
+    --shadow: 0 10px 30px -12px rgba(30, 20, 10, 0.25);
+    --serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14120f;
+      --bg-elevated: #1e1b17;
+      --text: #f1ece2;
+      --text-muted: #a89f92;
+      --accent: #e2795a;
+      --accent-soft: #3a241d;
+      --line: #33302a;
+      --navy: #0b0e16;
+      --tag-bg: #2a251d;
+      --shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+  img { max-width: 100%; }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+
+  header.hero {
+    background: var(--navy);
+    color: #f3ede0;
+    padding: 48px 20px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  header.hero .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    color: #c9a48f;
+    font-weight: 600;
+  }
+  header.hero h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 2.1rem;
+    line-height: 1.2;
+    margin: 10px 0 14px;
+  }
+  header.hero p.lead {
+    color: #d8d2c4;
+    font-size: 1.02rem;
+    max-width: 46ch;
+  }
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin-top: 22px;
+    font-size: 0.85rem;
+    color: #cfc7b6;
+  }
+  .stat-row strong { color: #f3ede0; display: block; font-family: var(--serif); font-size: 1.1rem; }
+
+  nav.jumpbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 14px;
+    scrollbar-width: none;
+  }
+  nav.jumpbar::-webkit-scrollbar { display: none; }
+  nav.jumpbar a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    padding: 6px 10px;
+    border-radius: 999px;
+    margin-right: 4px;
+    border: 1px solid var(--line);
+  }
+  nav.jumpbar a:hover { color: var(--accent); border-color: var(--accent); }
+
+  section.intro { padding: 28px 20px 6px; }
+  section.intro p { color: var(--text-muted); }
+
+  .route-map { padding: 4px 20px 8px; }
+  .route-map svg { width: 100%; height: auto; display: block; }
+  .route-map figcaption { font-size: 0.78rem; color: var(--text-muted); margin-top: 6px; text-align: center; }
+
+  .leg {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    padding: 10px 20px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .leg .dots { flex: 0 0 auto; width: 22px; text-align: center; opacity: 0.6; }
+  .leg .line { flex: 1; height: 1px; background: repeating-linear-gradient(90deg, var(--line), var(--line) 4px, transparent 4px, transparent 8px); }
+
+  main { padding-bottom: 60px; }
+
+  article.stop {
+    background: var(--bg-elevated);
+    margin: 18px 14px;
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    scroll-margin-top: 58px;
+  }
+  .stop-head {
+    padding: 22px 24px 4px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+  }
+  .stop-num {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    width: 30px; height: 30px;
+    flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--accent-soft);
+  }
+  .stop-head h2 { font-family: var(--serif); font-weight: 400; font-size: 1.5rem; margin: 0; }
+  .stop-meta { padding: 0 24px 6px 68px; color: var(--text-muted); font-size: 0.82rem; }
+  .stop-body { padding: 8px 24px 22px 24px; }
+  .stop-body p { margin: 0 0 14px; }
+  .stop-body p:last-child { margin-bottom: 0; }
+
+  .tag-grid { display: grid; gap: 10px; margin-top: 16px; }
+  .tag-box {
+    background: var(--tag-bg);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .tag-box .tag-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .tag-box p { margin: 0; font-size: 0.92rem; }
+
+  details.practical {
+    margin-top: 16px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 10px 14px;
+  }
+  details.practical summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--text);
+  }
+  details.practical .practical-body { margin-top: 8px; font-size: 0.88rem; color: var(--text-muted); }
+  details.practical .practical-body p { margin: 4px 0; }
+
+  footer {
+    text-align: center;
+    padding: 30px 20px 50px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+  }
+
+  .install-hint {
+    margin: 18px 14px 0;
+    padding: 12px 16px;
+    border: 1px dashed var(--line);
+    border-radius: 12px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 640px) {
+    header.hero h1 { font-size: 2.5rem; }
+    article.stop { margin: 22px auto; max-width: 720px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Nico Privé · Stadtspaziergang</div>
+    <h1>Frankfurt zu Fuß: vom Bankenviertel in die Altstadt</h1>
+    <p class="lead">Zwei Stunden, sieben Stationen, ein Fluss. Wir starten dort, wo Frankfurt am lautesten mit seinem Geld prahlt, und enden dort, wo es am schönsten ist.</p>
+    <div class="stat-row">
+      <div><strong>~2 Std.</strong>Gesamtdauer</div>
+      <div><strong>~3,2 km</strong>Strecke</div>
+      <div><strong>7</strong>Stationen</div>
+      <div><strong>0</strong>Bahnfahrten nötig</div>
+    </div>
+  </div>
+</header>
+
+<nav class="jumpbar" aria-label="Stationen">
+  <a href="#s1">1 Tower</a>
+  <a href="#s2">2 Alte Oper</a>
+  <a href="#s3">3 Goethe-Haus</a>
+  <a href="#s4">4 Paulskirche</a>
+  <a href="#s5">5 Römer</a>
+  <a href="#s6">6 Dom</a>
+  <a href="#s7">7 Eiserner Steg</a>
+</nav>
+
+<section class="intro">
+  <div class="wrap">
+    <p>Kurz zur Route, bevor's losgeht: Alles ist gut zu Fuß machbar, die längste Etappe ist keine 900 Meter. U- und S-Bahn brauchst du nicht – aber falls die Füße doch mal murren oder es anfängt zu schütten, liegt an fast jeder Station eine Haltestelle in Sichtweite (steht jeweils bei „Praktisch"). Am schnellsten wäre die U6/U7 direkt von der Alten Oper zum Dom/Römer, falls du mittendrin abkürzen willst.</p>
+  </div>
+</section>
+
+<figure class="route-map">
+  <div class="wrap">
+    <svg viewBox="0 0 680 200" role="img" aria-labelledby="routeTitle">
+      <title id="routeTitle">Schematische Route: Commerzbank Tower, Alte Oper, Goethe-Haus, Paulskirche, Römer, Dom, Eiserner Steg</title>
+      <path d="M 40 60 L 150 40 L 260 90 L 350 100 L 430 95 L 540 70 L 620 140" fill="none" style="stroke:var(--accent)" stroke-width="3" stroke-dasharray="1 10" stroke-linecap="round"/>
+      <g font-family="Georgia, serif" font-size="12" style="fill:var(--text)">
+        <circle cx="40" cy="60" r="7" style="fill:var(--navy)"/><text x="40" y="30" text-anchor="middle">1 Tower</text>
+        <circle cx="150" cy="40" r="7" style="fill:var(--accent)"/><text x="150" y="20" text-anchor="middle">2 Oper</text>
+        <circle cx="260" cy="90" r="7" style="fill:var(--accent)"/><text x="260" y="115" text-anchor="middle">3 Goethe</text>
+        <circle cx="350" cy="100" r="7" style="fill:var(--accent)"/><text x="350" y="80" text-anchor="middle">4 Paulsk.</text>
+        <circle cx="430" cy="95" r="7" style="fill:var(--accent)"/><text x="430" y="120" text-anchor="middle">5 Römer</text>
+        <circle cx="540" cy="70" r="7" style="fill:var(--accent)"/><text x="540" y="50" text-anchor="middle">6 Dom</text>
+        <circle cx="620" cy="140" r="8" style="fill:var(--navy)"/><text x="605" y="165" text-anchor="middle">7 Steg</text>
+      </g>
+      <path d="M 560 90 Q 600 130 620 140" fill="none" stroke="#5c7a96" stroke-width="10" opacity="0.35"/>
+    </svg>
+    <figcaption>Schematisch, nicht maßstabsgetreu – die echte Wegführung steht bei jeder Station unter „Praktisch".</figcaption>
+  </div>
+</figure>
+
+<main>
+
+  <article class="stop" id="s1">
+    <div class="stop-head"><span class="stop-num">1</span><h2>Commerzbank Tower</h2></div>
+    <div class="stop-meta">Kaiserplatz 1 · Start der Tour</div>
+    <div class="stop-body">
+      <p>Wir fangen ganz oben an – zumindest optisch. 300 Meter Stahl und Glas, seit 1997 das erste Gesicht, das Frankfurt am Horizont zeigt. Kein zufälliger Startpunkt: Hier steckt das ganze Selbstverständnis dieser Stadt drin, bevor wir gleich in die Gassen eintauchen, wo es viel älter wird.</p>
+      <p>Norman Foster hat den Turm zwischen 1994 und 1997 gebaut – als erstes deutsches Hochhaus komplett aus Stahl, mit einem dreieckigen Grundriss um ein zentrales Atrium herum, das sich alle vier Stockwerke zu kleinen „Sky Gardens" öffnet. Klingt nach Architektursprache, heißt aber einfach: Licht und Luft statt nur Klimaanlage. Für 1997 ziemlich radikal. Bis 2021 war er 24 Jahre lang das höchste Gebäude der EU, dann hat ihn der Varso Tower in Warschau abgelöst.</p>
+      <div class="tag-grid">
+        <div class="tag-box"><div class="tag-label">Warum genau das hier</div><p>Weil man Frankfurts Selbstbild – Geld, Größe, Tempo – nirgends klarer sieht als an diesem Turm. Alles, was danach kommt, ist der Gegenentwurf dazu.</p></div>
+        <div class="tag-box"><div class="tag-label">Martins Tipp</div><p>Einmal um den Kaiserplatz herumgehen und von verschiedenen Seiten hochschauen – die dreieckige Form verändert sich komplett je nach Blickwinkel.</p></div>
+        <div class="tag-box"><div class="tag-label">Nicht verpassen</div><p>Der Blick durch die Glasfassade der Lobby ins begrünte Atrium – mehr Innenleben bekommt man als Besucher nicht zu sehen.</p></div>
+        <div class="tag-box"><div class="tag-label">Foto-Tipp</div><p>Vom Kaiserplatz schräg nach oben fotografieren, oder ein paar Schritte in die Taunusanlage hinein mit Bäumen im Vordergrund – bricht die reine Beton-Optik auf.</p></div>
+        <div class="tag-box"><div class="tag-label">Wusstest du schon?</div><p>Anders als der Maintower hat der Commerzbank Tower keine öffentliche Aussichtsplattform – reines Bürogebäude, Publikumsverkehr nur bei seltenen Architekturführungen.</p></div>
+      </div>
+      <details class="practical">
+        <summary>Praktisch</summary>
+        <div class="practical-body">
+          <p>Frei zugänglich von außen, kein regulärer Innenbesuch möglich.</p>
+          <p>Nächste Haltestelle: Taunusanlage (U1/U2/U3/U8/U9), 3 Gehminuten.</p>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <div class="leg"><span class="dots">→</span><span>ca. 900 m / 12 Min. zu Fuß durch die Taunusanlage</span><span class="line"></span></div>
+
+  <article class="stop" id="s2">
+    <div class="stop-head"><span class="stop-num">2</span><h2>Alte Oper</h2></div>
+    <div class="stop-meta">Opernplatz 1</div>
+    <div class="stop-body">
+      <p>Von Beton und Stahl direkt in den Prunk des 19. Jahrhunderts: Die Alte Oper ist ein Renaissance-Palast, der eigentlich zweimal gerettet werden musste – einmal vor den Bomben, einmal vor der eigenen Stadt.</p>
+      <p>Richard Lucae baute sie 1873 bis 1880, eröffnet wurde sie mit Kaiser Wilhelm I. persönlich im Publikum. 1944 brannte sie bei einem Luftangriff komplett aus – übrig blieb nur die Fassade. In den 1960ern wollte die Stadt sie abreißen, der zuständige Wirtschaftsdezernent Rudi Arndt bekam dafür den Spitznamen „Dynamit-Rudi". Eine Bürgerinitiative sammelte stattdessen 15 Millionen Mark für den Wiederaufbau, und 1981 öffnete das Haus wieder – mit Mahlers 8. Sinfonie, passend monumental.</p>
+      <div class="tag-grid">
+        <div class="tag-box"><div class="tag-label">Warum genau das hier</div><p>Weil hier zum ersten Mal auf dieser Tour sichtbar wird, wie sehr sich Frankfurt seine Geschichte zurückerkämpft hat – ein Muster, das sich später am Römer wiederholt.</p></div>
+        <div class="tag-box"><div class="tag-label">Martins Tipp</div><p>Die Treppen vor dem Haupteingang hochgehen und dich kurz hinsetzen – von dort hat man den ganzen Opernplatz samt Fressgass-Einmündung im Blick.</p></div>
+        <div class="tag-box"><div class="tag-label">Nicht verpassen</div><p>Die Inschrift „Dem Wahren, Schönen, Guten" über dem Portal – Kaiser Wilhelm soll das Haus damals selbst als „für seine Verhältnisse zu prunkvoll" kommentiert haben.</p></div>
+        <div class="tag-box"><div class="tag-label">Foto-Tipp</div><p>Von der gegenüberliegenden Seite des Opernplatzes mit dem Brunnen im Vordergrund – klassisch, aber aus gutem Grund.</p></div>
+        <div class="tag-box"><div class="tag-label">Wusstest du schon?</div><p>Der Mann, der sie sprengen wollte, war am Ende auch der, der ihre Rettung mit einfädelte – Rudi Arndt drehte seine Position im Lauf der Debatte komplett um.</p></div>
+      </div>
+      <details class="practical">
+        <summary>Praktisch</summary>
+        <div class="practical-body">
+          <p>Von außen jederzeit zugänglich, innen nur bei Konzert oder Führung zu sehen.</p>
+          <p>Eigene Haltestelle „Alte Oper" (U6/U7) direkt am Platz.</p>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <div class="leg"><span class="dots">→</span><span>ca. 850 m / 11 Min. über die Fressgass zur Hauptwache</span><span class="line"></span></div>
+
+  <article class="stop" id="s3">
+    <div class="stop-head"><span class="stop-num">3</span><h2>Goethe-Haus</h2></div>
+    <div class="stop-meta">Großer Hirschgraben 21</div>
+    <div class="stop-body">
+      <p>Kein Palast, sondern ein ganz normales – für Frankfurter Verhältnisse großzügiges – Bürgerhaus. Genau das macht es besonders: Hier wurde Johann Wolfgang von Goethe 1749 geboren und wuchs auf, bis er mit 16 zum Studium nach Leipzig ging.</p>
+      <p>Auch dieses Haus fiel 1944 fast vollständig den Bomben zum Opfer. Was heute steht, ist eine Rekonstruktion nach alten Plänen, Fotografien und geretteten Originalteilen – von der astronomischen Uhr bis zu einzelnen Möbelstücken. Nebenan schließt sich das Deutsche Romantik-Museum an, barrierefrei zugänglich, während man ins historische Haus selbst nur über Treppen kommt.</p>
+      <div class="tag-grid">
+        <div class="tag-box"><div class="tag-label">Warum genau das hier</div><p>Weil man selten so nah an das bürgerliche Frankfurt des 18. Jahrhunderts herankommt – kein Museum mit Abstand, sondern ein Zuhause mit Geschichte.</p></div>
+        <div class="tag-box"><div class="tag-label">Martins Tipp</div><p>Für die reine Zwei-Stunden-Route reicht ein Blick auf die Fassade. Wenn du aber Zeit hast: 45 Minuten für drinnen einplanen, dann sprengt das den Zeitrahmen locker – und lohnt sich trotzdem.</p></div>
+        <div class="tag-box"><div class="tag-label">Nicht verpassen</div><p>Bei einem Innenbesuch: die original eingerichteten Dichterzimmer im ersten Stock, in denen Goethe seine ersten Werke schrieb.</p></div>
+        <div class="tag-box"><div class="tag-label">Foto-Tipp</div><p>Die schlichte Fassade frontal, am besten am frühen Vormittag, wenn noch keine Reisegruppen davorstehen.</p></div>
+        <div class="tag-box"><div class="tag-label">Wusstest du schon?</div><p>1944 lag das Haus fast komplett in Trümmern – fast alles, was du heute siehst, ist Wiederaufbau nach alten Unterlagen, kein Original im strengen Sinn.</p></div>
+      </div>
+      <details class="practical">
+        <summary>Praktisch</summary>
+        <div class="practical-body">
+          <p>Mo–So 10–18 Uhr, Do bis 21 Uhr. Eintritt 12 € (ermäßigt 7 €, Familienticket 18 €).</p>
+          <p>Nächste Haltestelle: Hauptwache (fast alle U- und S-Bahnen), 4 Gehminuten.</p>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <div class="leg"><span class="dots">→</span><span>ca. 450 m / 6 Min.</span><span class="line"></span></div>
+
+  <article class="stop" id="s4">
+    <div class="stop-head"><span class="stop-num">4</span><h2>Paulskirche</h2></div>
+    <div class="stop-meta">Paulsplatz 11</div>
+    <div class="stop-body">
+      <p>Ein schlichter, runder Kirchenbau – und trotzdem einer der bedeutendsten Orte der deutschen Geschichte. Hier tagte ab dem 18. Mai 1848 die erste frei gewählte deutsche Nationalversammlung.</p>
+      <p>Gebaut wurde die Kirche zwischen 1789 und 1833 von Johann Friedrich Christian Hess, klassizistisch, aus rotem Mainsandstein. 1849 verabschiedete die Nationalversammlung hier die sogenannte Paulskirchenverfassung – ein früher, gescheiterter, aber wegweisender Versuch demokratischer Grundrechte in Deutschland. 1944 brannte auch sie aus, wurde aber als erstes historisches Gebäude Frankfurts schon 1947/48 wiederaufgebaut, pünktlich zum 100. Jahrestag der Nationalversammlung.</p>
+      <div class="tag-grid">
+        <div class="tag-box"><div class="tag-label">Warum genau das hier</div><p>Weil hier zum ersten Mal auf deutschem Boden ernsthaft über Demokratie und Grundrechte verhandelt wurde – ein Jahrhundert bevor es sie tatsächlich gab.</p></div>
+        <div class="tag-box"><div class="tag-label">Martins Tipp</div><p>Kurz reingehen, wenn offen – meist kostenlos. Der schlichte runde Saal wirkt überraschend nüchtern für einen so aufgeladenen historischen Ort, gerade das macht ihn interessant.</p></div>
+        <div class="tag-box"><div class="tag-label">Nicht verpassen</div><p>Die Gedenktafeln im Innenraum und das große Rundfenster über dem Saal.</p></div>
+        <div class="tag-box"><div class="tag-label">Foto-Tipp</div><p>Schräg von vorne auf den Rundbau mit der Kuppel – von geradeaus wirkt die Form flach.</p></div>
+        <div class="tag-box"><div class="tag-label">Wusstest du schon?</div><p>Bis heute wird hier jährlich zur Frankfurter Buchmesse der Friedenspreis des Deutschen Buchhandels verliehen.</p></div>
+      </div>
+      <details class="practical">
+        <summary>Praktisch</summary>
+        <div class="practical-body">
+          <p>Stand August 2026: grundsätzlich zugänglich, eine größere Sanierung ist angekündigt und startet in den kommenden Jahren – am Tag selbst kurz auf frankfurt.de/paulskirche checken, falls sie ausnahmsweise geschlossen ist.</p>
+          <p>Nächste Haltestelle: Dom/Römer (U4/U5), 3 Gehminuten.</p>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <div class="leg"><span class="dots">→</span><span>ca. 250 m / 3 Min.</span><span class="line"></span></div>
+
+  <article class="stop" id="s5">
+    <div class="stop-head"><span class="stop-num">5</span><h2>Römerberg & Römer</h2></div>
+    <div class="stop-meta">Römerberg 23</div>
+    <div class="stop-body">
+      <p>Das historische Herz der Stadt – und gleichzeitig der Ort, an dem Frankfurt am offensten mit sich selbst streitet. Der „Römer" ist seit 1405 Rathaus, die Fachwerkgassen drumherum sind erst seit 2018 wieder da.</p>
+      <p>Der ganze Platz wurde im Krieg fast vollständig zerstört und jahrzehntelang nur notdürftig mit nüchternen Nachkriegsbauten gefüllt. Zwischen 2012 und 2018 entstand dann die „Neue Altstadt": 35 Gebäude, 15 originalgetreue Rekonstruktionen und 20 Neubauten in historischer Formensprache, für rund 200 Millionen Euro. Kritiker nennen es „Fake-Architektur", viele Frankfurter sagen: endlich wieder ein Herz für die Stadt. Beides stimmt ein bisschen.</p>
+      <div class="tag-grid">
+        <div class="tag-box"><div class="tag-label">Warum genau das hier</div><p>Weil dieser Platz wie kein zweiter zeigt, wie Frankfurt mit seiner eigenen Zerstörung und Wiedergeburt umgeht – genau das Thema, das sich durch die ganze Tour zieht.</p></div>
+        <div class="tag-box"><div class="tag-label">Martins Tipp</div><p>Nicht nur auf dem großen Platz stehen bleiben – einmal durch die schmalen Gassen der Neuen Altstadt dahinter schlendern, besonders zum „Hühnermarkt" hin.</p></div>
+        <div class="tag-box"><div class="tag-label">Nicht verpassen</div><p>Die drei Staffelgiebel der Römer-Fassade und den Gerechtigkeitsbrunnen davor.</p></div>
+        <div class="tag-box"><div class="tag-label">Foto-Tipp</div><p>Von der Platzmitte direkt auf die Römer-Fassade, oder aus der Braubachstraße auf die neue Altstadtgasse dahinter.</p></div>
+        <div class="tag-box"><div class="tag-label">Wusstest du schon?</div><p>Zwischen 1562 und 1792 wurden hier zehn deutsche Kaiser gekrönt – der „Krönungsweg" vom Römer zum Dom, den wir jetzt gleich selbst laufen, ist originalgetreu nachgebaut.</p></div>
+      </div>
+      <details class="practical">
+        <summary>Praktisch</summary>
+        <div class="practical-body">
+          <p>Platz frei zugänglich. Der Römer selbst (Kaisersaal) nur bei Führung oder Sonderöffnung von innen zu besichtigen.</p>
+          <p>Haltestelle Dom/Römer (U4/U5) liegt direkt am Platz.</p>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <div class="leg"><span class="dots">→</span><span>ca. 350 m / 5 Min. über den Krönungsweg</span><span class="line"></span></div>
+
+  <article class="stop" id="s6">
+    <div class="stop-head"><span class="stop-num">6</span><h2>Kaiserdom St. Bartholomäus</h2></div>
+    <div class="stop-meta">Domplatz 14</div>
+    <div class="stop-body">
+      <p>„Dom" heißt er, ohne dass Frankfurt je Bischofssitz war. Seinen Namen verdankt er einer anderen Rolle: Von 1356 bis 1792 war er der Ort, an dem deutsche Könige gewählt und zehn von ihnen als Kaiser gekrönt wurden.</p>
+      <p>Es ist bereits das fünfte Bauwerk an dieser Stelle seit dem 7. Jahrhundert. Das gotische Langhaus entstand ab etwa 1260, der markante Westturm ab 1415. Ein Brand 1867 und die Zerstörung im Zweiten Weltkrieg setzten dem Dom schwer zu, beides Mal wurde er wiederaufgebaut – zuletzt mit einer 1992/94 aufgetragenen roten Farbfassung im Innenraum, die bis heute diskutiert wird.</p>
+      <div class="tag-grid">
+        <div class="tag-box"><div class="tag-label">Warum genau das hier</div><p>Weil Frankfurt nie ein bedeutender Bischofssitz war, aber jahrhundertelang der Ort, an dem über das ganze Reich entschieden wurde – über 1000 Jahre Kontinuität an einem einzigen Fleck.</p></div>
+        <div class="tag-box"><div class="tag-label">Martins Tipp</div><p>Wenn Zeit und Kondition reichen: die 324 Stufen auf den Turm steigen (nur April–Oktober) – der beste Blick der ganzen Tour, Altstadt und Skyline in einem Bild.</p></div>
+        <div class="tag-box"><div class="tag-label">Nicht verpassen</div><p>Das angeschlossene Dommuseum mit einem Grabfund aus dem 7. Jahrhundert – zeigt, wie viel älter dieser Ort ist als jedes sichtbare Bauwerk darauf.</p></div>
+        <div class="tag-box"><div class="tag-label">Foto-Tipp</div><p>Vom Domplatz aus mit dem Turm im Vordergrund und den Hochhäusern der Skyline dahinter – der beste „Alt trifft Neu"-Schuss der gesamten Route.</p></div>
+        <div class="tag-box"><div class="tag-label">Wusstest du schon?</div><p>Die auffällige rote Innenfarbe stammt aus einer Restaurierung der frühen 90er – vielen war sie damals zu grell für einen gotischen Dom, das Thema kocht bis heute gelegentlich hoch.</p></div>
+      </div>
+      <details class="practical">
+        <summary>Praktisch</summary>
+        <div class="practical-body">
+          <p>Kirche in der Regel 9–17 Uhr geöffnet, Eintritt frei. Turmbesteigung nur April–Oktober, kleine Gebühr, 324 Stufen.</p>
+          <p>Haltestelle Dom/Römer (U4/U5), 3 Gehminuten.</p>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <div class="leg"><span class="dots">→</span><span>ca. 425 m / 6 Min. über Fahrtor und Mainkai</span><span class="line"></span></div>
+
+  <article class="stop" id="s7">
+    <div class="stop-head"><span class="stop-num">7</span><h2>Eiserner Steg</h2></div>
+    <div class="stop-meta">Fußgängerbrücke über den Main · Ziel der Tour</div>
+    <div class="stop-body">
+      <p>Und hier schließt sich der Kreis: Von der schmalen Fußgängerbrücke aus siehst du zum ersten Mal die ganze Skyline auf einen Blick – inklusive dem Commerzbank Tower, wo wir vor zwei Stunden gestartet sind.</p>
+      <p>Die Brücke wurde 1868 von Bürgern per Aktienzeichnung finanziert und gebaut, um die überfüllte Alte Brücke zu entlasten. 1912 wurde sie erneuert, am 26. März 1945 sprengten deutsche Truppen sie kurz vor Kriegsende – ein Verlust, der 1946 mit dem Wiederaufbau schnell wieder wettgemacht wurde. Seit den 2000ern hat sie sich zusätzlich zu einem Wallfahrtsort für Liebesschlösser entwickelt, ein Brauch, der ursprünglich aus Italien stammt.</p>
+      <div class="tag-grid">
+        <div class="tag-box"><div class="tag-label">Warum genau das hier</div><p>Weil sie die Altstadt mit dem Sachsenhausener Museumsufer verbindet und der einzige Ort auf dieser Route ist, an dem alt und neu, Main und Skyline gleichzeitig ins Bild passen.</p></div>
+        <div class="tag-box"><div class="tag-label">Martins Tipp</div><p>Genau in die Mitte der Brücke stellen: einmal Richtung Skyline drehen, einmal Richtung Dom – beide Gesichter Frankfurts in zehn Sekunden.</p></div>
+        <div class="tag-box"><div class="tag-label">Nicht verpassen</div><p>Die tausenden Liebesschlösser am Geländer – jedes einzelne mit einer eigenen, unbekannten kleinen Geschichte.</p></div>
+        <div class="tag-box"><div class="tag-label">Foto-Tipp</div><p>Zur goldenen Stunde oder kurz nach Sonnenuntergang Richtung Skyline – dann leuchten die Hochhäuser und spiegeln sich im Main.</p></div>
+        <div class="tag-box"><div class="tag-label">Wusstest du schon?</div><p>Die Stadt entfernt jedes Jahr verrostete Schlösser, damit die Brücke nicht zu schwer wird – aufgehalten hat das den Brauch bisher nie.</p></div>
+      </div>
+      <details class="practical">
+        <summary>Praktisch</summary>
+        <div class="practical-body">
+          <p>Jederzeit frei begehbar, bei Nässe/Wind kann das Metall rutschig sein.</p>
+          <p>Nächste Haltestelle: Römerberg (Bus) oder Dom/Römer (U4/U5), 4 Gehminuten zurück.</p>
+        </div>
+      </details>
+    </div>
+  </article>
+
+</main>
+
+<div class="wrap install-hint">
+  Tipp: Diese Seite läuft als kleine App – über „Zum Home-Bildschirm hinzufügen" installierbar, danach auch ohne Netz nutzbar.
+</div>
+
+<footer>
+  Ein Nico-Privé-Guide für Frankfurt am Main · zuletzt recherchiert im August 2026
+</footer>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js").catch(() => {});
+    });
+  }
+</script>
+
+</body>
+</html>

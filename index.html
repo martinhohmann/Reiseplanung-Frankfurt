@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Frankfurt zu Fuß – Bankenviertel & Altstadt</title>
 <meta name="description" content="Ein zweistündiger Spaziergang vom Commerzbank Tower zum Eisernen Steg, mit Geschichten zu jeder Station.">
-<meta name="theme-color" content="#121826">
+<meta name="theme-color" content="#0f2a3d">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -13,30 +13,30 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
   :root {
-    --bg: #f7f3ec;
+    --bg: #f4f8f7;
     --bg-elevated: #ffffff;
-    --text: #201c17;
-    --text-muted: #6a6259;
-    --accent: #a8462f;
-    --accent-soft: #f1ded6;
-    --line: #ded4c5;
-    --navy: #121826;
-    --tag-bg: #eee6d8;
-    --shadow: 0 10px 30px -12px rgba(30, 20, 10, 0.25);
+    --text: #142521;
+    --text-muted: #58726c;
+    --accent: #0d8a86;
+    --accent-soft: #dcf3f1;
+    --line: #d7e8e5;
+    --navy: #0f2a3d;
+    --tag-bg: #eaf7f5;
+    --shadow: 0 10px 30px -12px rgba(15, 42, 61, 0.18);
     --serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #14120f;
-      --bg-elevated: #1e1b17;
-      --text: #f1ece2;
-      --text-muted: #a89f92;
-      --accent: #e2795a;
-      --accent-soft: #3a241d;
-      --line: #33302a;
-      --navy: #0b0e16;
-      --tag-bg: #2a251d;
+      --bg: #0c1917;
+      --bg-elevated: #122624;
+      --text: #eaf6f4;
+      --text-muted: #8fada7;
+      --accent: #3fd6cd;
+      --accent-soft: #113330;
+      --line: #1e3532;
+      --navy: #081b26;
+      --tag-bg: #102b28;
       --shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
     }
   }
@@ -66,7 +66,7 @@
     text-transform: uppercase;
     letter-spacing: 0.14em;
     font-size: 0.72rem;
-    color: #c9a48f;
+    color: #7fe0d8;
     font-weight: 600;
   }
   header.hero h1 {
@@ -77,7 +77,7 @@
     margin: 10px 0 14px;
   }
   header.hero p.lead {
-    color: #d8d2c4;
+    color: #cfe6e2;
     font-size: 1.02rem;
     max-width: 46ch;
   }
@@ -87,9 +87,9 @@
     gap: 10px 22px;
     margin-top: 22px;
     font-size: 0.85rem;
-    color: #cfc7b6;
+    color: #a9cdc7;
   }
-  .stat-row strong { color: #f3ede0; display: block; font-family: var(--serif); font-size: 1.1rem; }
+  .stat-row strong { color: #f1fbf9; display: block; font-family: var(--serif); font-size: 1.1rem; }
 
   nav.jumpbar {
     position: sticky;
@@ -168,6 +168,13 @@
   .stop-body { padding: 8px 24px 22px 24px; }
   .stop-body p { margin: 0 0 14px; }
   .stop-body p:last-child { margin-bottom: 0; }
+
+  .stop-photo {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    display: block;
+  }
 
   .tag-grid { display: grid; gap: 10px; margin-top: 16px; }
   .tag-box {
@@ -279,6 +286,7 @@
   <article class="stop" id="s1">
     <div class="stop-head"><span class="stop-num">1</span><h2>Commerzbank Tower</h2></div>
     <div class="stop-meta">Kaiserplatz 1 · Start der Tour</div>
+    <img class="stop-photo" src="images/01-commerzbank-tower.jpg" alt="Commerzbank Tower Frankfurt" loading="lazy" onerror="this.style.display='none'">
     <div class="stop-body">
       <p>Wir fangen ganz oben an – zumindest optisch. 300 Meter Stahl und Glas, seit 1997 das erste Gesicht, das Frankfurt am Horizont zeigt. Kein zufälliger Startpunkt: Hier steckt das ganze Selbstverständnis dieser Stadt drin, bevor wir gleich in die Gassen eintauchen, wo es viel älter wird.</p>
       <p>Norman Foster hat den Turm zwischen 1994 und 1997 gebaut – als erstes deutsches Hochhaus komplett aus Stahl, mit einem dreieckigen Grundriss um ein zentrales Atrium herum, das sich alle vier Stockwerke zu kleinen „Sky Gardens" öffnet. Klingt nach Architektursprache, heißt aber einfach: Licht und Luft statt nur Klimaanlage. Für 1997 ziemlich radikal. Bis 2021 war er 24 Jahre lang das höchste Gebäude der EU, dann hat ihn der Varso Tower in Warschau abgelöst.</p>
@@ -304,6 +312,7 @@
   <article class="stop" id="s2">
     <div class="stop-head"><span class="stop-num">2</span><h2>Alte Oper</h2></div>
     <div class="stop-meta">Opernplatz 1</div>
+    <img class="stop-photo" src="images/02-alte-oper.jpg" alt="Alte Oper Frankfurt" loading="lazy" onerror="this.style.display='none'">
     <div class="stop-body">
       <p>Von Beton und Stahl direkt in den Prunk des 19. Jahrhunderts: Die Alte Oper ist ein Renaissance-Palast, der eigentlich zweimal gerettet werden musste – einmal vor den Bomben, einmal vor der eigenen Stadt.</p>
       <p>Richard Lucae baute sie 1873 bis 1880, eröffnet wurde sie mit Kaiser Wilhelm I. persönlich im Publikum. 1944 brannte sie bei einem Luftangriff komplett aus – übrig blieb nur die Fassade. In den 1960ern wollte die Stadt sie abreißen, der zuständige Wirtschaftsdezernent Rudi Arndt bekam dafür den Spitznamen „Dynamit-Rudi". Eine Bürgerinitiative sammelte stattdessen 15 Millionen Mark für den Wiederaufbau, und 1981 öffnete das Haus wieder – mit Mahlers 8. Sinfonie, passend monumental.</p>
@@ -329,6 +338,7 @@
   <article class="stop" id="s3">
     <div class="stop-head"><span class="stop-num">3</span><h2>Goethe-Haus</h2></div>
     <div class="stop-meta">Großer Hirschgraben 21</div>
+    <img class="stop-photo" src="images/03-goethe-haus.jpg" alt="Goethe-Haus Frankfurt" loading="lazy" onerror="this.style.display='none'">
     <div class="stop-body">
       <p>Kein Palast, sondern ein ganz normales – für Frankfurter Verhältnisse großzügiges – Bürgerhaus. Genau das macht es besonders: Hier wurde Johann Wolfgang von Goethe 1749 geboren und wuchs auf, bis er mit 16 zum Studium nach Leipzig ging.</p>
       <p>Auch dieses Haus fiel 1944 fast vollständig den Bomben zum Opfer. Was heute steht, ist eine Rekonstruktion nach alten Plänen, Fotografien und geretteten Originalteilen – von der astronomischen Uhr bis zu einzelnen Möbelstücken. Nebenan schließt sich das Deutsche Romantik-Museum an, barrierefrei zugänglich, während man ins historische Haus selbst nur über Treppen kommt.</p>
@@ -354,6 +364,7 @@
   <article class="stop" id="s4">
     <div class="stop-head"><span class="stop-num">4</span><h2>Paulskirche</h2></div>
     <div class="stop-meta">Paulsplatz 11</div>
+    <img class="stop-photo" src="images/04-paulskirche.jpg" alt="Paulskirche Frankfurt" loading="lazy" onerror="this.style.display='none'">
     <div class="stop-body">
       <p>Ein schlichter, runder Kirchenbau – und trotzdem einer der bedeutendsten Orte der deutschen Geschichte. Hier tagte ab dem 18. Mai 1848 die erste frei gewählte deutsche Nationalversammlung.</p>
       <p>Gebaut wurde die Kirche zwischen 1789 und 1833 von Johann Friedrich Christian Hess, klassizistisch, aus rotem Mainsandstein. 1849 verabschiedete die Nationalversammlung hier die sogenannte Paulskirchenverfassung – ein früher, gescheiterter, aber wegweisender Versuch demokratischer Grundrechte in Deutschland. 1944 brannte auch sie aus, wurde aber als erstes historisches Gebäude Frankfurts schon 1947/48 wiederaufgebaut, pünktlich zum 100. Jahrestag der Nationalversammlung.</p>
@@ -379,6 +390,7 @@
   <article class="stop" id="s5">
     <div class="stop-head"><span class="stop-num">5</span><h2>Römerberg & Römer</h2></div>
     <div class="stop-meta">Römerberg 23</div>
+    <img class="stop-photo" src="images/05-roemerberg.jpg" alt="Römerberg und Römer Frankfurt" loading="lazy" onerror="this.style.display='none'">
     <div class="stop-body">
       <p>Das historische Herz der Stadt – und gleichzeitig der Ort, an dem Frankfurt am offensten mit sich selbst streitet. Der „Römer" ist seit 1405 Rathaus, die Fachwerkgassen drumherum sind erst seit 2018 wieder da.</p>
       <p>Der ganze Platz wurde im Krieg fast vollständig zerstört und jahrzehntelang nur notdürftig mit nüchternen Nachkriegsbauten gefüllt. Zwischen 2012 und 2018 entstand dann die „Neue Altstadt": 35 Gebäude, 15 originalgetreue Rekonstruktionen und 20 Neubauten in historischer Formensprache, für rund 200 Millionen Euro. Kritiker nennen es „Fake-Architektur", viele Frankfurter sagen: endlich wieder ein Herz für die Stadt. Beides stimmt ein bisschen.</p>
@@ -404,6 +416,7 @@
   <article class="stop" id="s6">
     <div class="stop-head"><span class="stop-num">6</span><h2>Kaiserdom St. Bartholomäus</h2></div>
     <div class="stop-meta">Domplatz 14</div>
+    <img class="stop-photo" src="images/06-kaiserdom.jpg" alt="Kaiserdom St. Bartholomäus Frankfurt" loading="lazy" onerror="this.style.display='none'">
     <div class="stop-body">
       <p>„Dom" heißt er, ohne dass Frankfurt je Bischofssitz war. Seinen Namen verdankt er einer anderen Rolle: Von 1356 bis 1792 war er der Ort, an dem deutsche Könige gewählt und zehn von ihnen als Kaiser gekrönt wurden.</p>
       <p>Es ist bereits das fünfte Bauwerk an dieser Stelle seit dem 7. Jahrhundert. Das gotische Langhaus entstand ab etwa 1260, der markante Westturm ab 1415. Ein Brand 1867 und die Zerstörung im Zweiten Weltkrieg setzten dem Dom schwer zu, beides Mal wurde er wiederaufgebaut – zuletzt mit einer 1992/94 aufgetragenen roten Farbfassung im Innenraum, die bis heute diskutiert wird.</p>
@@ -429,6 +442,7 @@
   <article class="stop" id="s7">
     <div class="stop-head"><span class="stop-num">7</span><h2>Eiserner Steg</h2></div>
     <div class="stop-meta">Fußgängerbrücke über den Main · Ziel der Tour</div>
+    <img class="stop-photo" src="images/07-eiserner-steg.jpg" alt="Eiserner Steg mit Skyline Frankfurt" loading="lazy" onerror="this.style.display='none'">
     <div class="stop-body">
       <p>Und hier schließt sich der Kreis: Von der schmalen Fußgängerbrücke aus siehst du zum ersten Mal die ganze Skyline auf einen Blick – inklusive dem Commerzbank Tower, wo wir vor zwei Stunden gestartet sind.</p>
       <p>Die Brücke wurde 1868 von Bürgern per Aktienzeichnung finanziert und gebaut, um die überfüllte Alte Brücke zu entlasten. 1912 wurde sie erneuert, am 26. März 1945 sprengten deutsche Truppen sie kurz vor Kriegsende – ein Verlust, der 1946 mit dem Wiederaufbau schnell wieder wettgemacht wurde. Seit den 2000ern hat sie sich zusätzlich zu einem Wallfahrtsort für Liebesschlösser entwickelt, ein Brauch, der ursprünglich aus Italien stammt.</p>

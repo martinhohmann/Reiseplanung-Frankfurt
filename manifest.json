@@ -1,12 +1,12 @@
 {
   "name": "Frankfurt zu Fuß – Bankenviertel & Altstadt",
-  "short_name": "FFM Walk",
-  "description": "Ein zweistündiger Spaziergang vom Commerzbank Tower bis zum Eisernen Steg – mit Geschichten zu jeder Station.",
+  "short_name": "FFM zu Fuß",
+  "description": "Nico Privés Stadtspaziergang durchs Bankenviertel und die Altstadt von Frankfurt am Main.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#0f2a3d",
-  "theme_color": "#0f2a3d",
+  "background_color": "#eef9f8",
+  "theme_color": "#0a3b3a",
   "lang": "de",
   "icons": [
     { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
